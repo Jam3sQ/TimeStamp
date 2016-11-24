@@ -6,22 +6,26 @@ app.get('/', function(req,res){
   res.send("TimeStamp App!");
 })
 
-
-
 app.get('/:id', function (req, res) {
   
-  //Unix
-  // var object = {
-  //   'unix': Number(req.params.id),
-  //   'natural': moment.unix(Number(req.params.id)).format('MMMM Do YYYY')
-  // }
-  
-  //Natural Language 
-    var object = {
-      'unix': moment(decodeURIComponent(req.params.id)).format('X'),
-      'natural': decodeURIComponent(req.params.id)
-    }
-  
+  if ( moment.unix(Number(req.params.id)).isValid() ){
+      // //Unix
+      var object = {
+        'unix': Number(req.params.id),
+        'natural': moment.unix(Number(req.params.id)).format('MMMM Do YYYY')
+      }
+  }
+
+  else if (((moment(decodeURIComponent(req.params.id)).format('X')) !== "Invalid date") === true ){
+      // //Natural Language 
+      var object = {
+        'unix': moment(decodeURIComponent(req.params.id)).format('X'),
+        'natural': decodeURIComponent(req.params.id)
+      }
+  }
+  else{
+    res.send("Error"); 
+  }
   res.send(JSON.stringify(object)); 
 }); 
 
