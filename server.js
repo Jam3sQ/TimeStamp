@@ -3,7 +3,7 @@ var app = express();
 var moment = require("moment"); 
 
 app.get('/', function(req,res){
-  res.send("TimeStamp App!");
+  res.send("TimeStamp API");
 })
 
 app.get('/:id', function (req, res) {
@@ -19,7 +19,7 @@ app.get('/:id', function (req, res) {
   else if (((moment(decodeURIComponent(req.params.id)).format('X')) !== "Invalid date") === true ){
       // //Natural Language 
       var object = {
-        'unix': moment(decodeURIComponent(req.params.id)).format('X'),
+        'unix': Number(moment(decodeURIComponent(req.params.id)).format('X')) ,
         'natural': decodeURIComponent(req.params.id)
       }
   }
@@ -32,4 +32,4 @@ app.get('/:id', function (req, res) {
   res.send(JSON.stringify(object)); 
 }); 
 
-app.listen(8080); 
+app.listen(process.env.PORT || 8080); 
