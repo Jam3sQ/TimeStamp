@@ -7,11 +7,19 @@ app.get('/', function(req,res){
 })
 
 //Unix
-app.get('/:id', function (req, res) {
-  var object = {
-    'unix': req.params.id
-  }
-  res.send(JSON.stringify(object)); 
+// app.get('/:id', function (req, res) {
+//   var object = {
+//     'unix': Number(req.params.id)
+//   }
+//   res.send(JSON.stringify(object)); 
+// }); 
+
+//Natural Language
+app.get('/:id', function (req, res){
+    var object = {
+      'natural': req.params.id
+    }
+    res.send(JSON.stringify(object)); 
 }); 
 
 app.listen(8080); 
