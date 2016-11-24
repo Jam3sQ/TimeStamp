@@ -24,7 +24,10 @@ app.get('/:id', function (req, res) {
       }
   }
   else{
-    res.send("Error"); 
+    var object = {
+      "unix": null, 
+      'natural': null
+    }
   }
   res.send(JSON.stringify(object)); 
 }); 
