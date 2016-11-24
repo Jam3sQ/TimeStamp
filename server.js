@@ -23,7 +23,6 @@ app.get('/:id', function (req, res) {
     }
   
   res.send(JSON.stringify(object)); 
-  console.log(moment(req.params.id)); 
 }); 
 
 app.listen(8080); 
