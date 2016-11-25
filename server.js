@@ -4,21 +4,21 @@ var moment = require("moment");
 
 app.use(express.static('public')); 
 
-app.get('/:id', function (req, res) {
+app.get('/:datestring', function (req, res) {
   
-  if ( moment.unix(Number(req.params.id)).isValid() ){
+  if (moment.unix(Number(req.params.datestring)).isValid() ){
       // //Unix
       var object = {
-        'unix': Number(req.params.id),
-        'natural': moment.unix(Number(req.params.id)).format('MMMM Do YYYY')
+        'unix': Number(req.params.datestring),
+        'natural': moment.unix(Number(req.params.datestring)).format('MMMM Do YYYY')
       }
   }
 
-  else if (((moment(decodeURIComponent(req.params.id)).format('X')) !== "Invalid date") === true ){
+  else if (((moment(decodeURIComponent(req.params.datestring)).format('X')) !== "Invalid date") === true ){
       // //Natural Language 
       var object = {
-        'unix': Number(moment(decodeURIComponent(req.params.id)).format('X')) ,
-        'natural': decodeURIComponent(req.params.id)
+        'unix': Number(moment(decodeURIComponent(req.params.datestring)).format('X')) ,
+        'natural': decodeURIComponent(req.params.datestring)
       }
   }
   else{
