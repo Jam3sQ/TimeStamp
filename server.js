@@ -4,10 +4,6 @@ var moment = require("moment");
 
 app.use(express.static('public')); 
 
-app.get('/', function(req,res){
-  res.send("TimeStamp API");
-})
-
 app.get('/:id', function (req, res) {
   
   if ( moment.unix(Number(req.params.id)).isValid() ){
